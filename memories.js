@@ -22,7 +22,7 @@ const memories = [
   {
     unlockDate: "2026-09-21",
     title: "The day I first held your hand",
-    message: "",
+    message: "Best decision I ever made",
     photo: "",
     photoAlt: "",
     photoCaption: ""
@@ -31,7 +31,7 @@ const memories = [
     unlockDate: "2026-09-22",
     title: "Our first text",
     message: "",
-    photo: "",
+    photo: "photos/photo.firsttext.jpg",
     photoAlt: "",
     photoCaption: ""
   },
@@ -39,7 +39,7 @@ const memories = [
     unlockDate: "2026-09-23",
     title: "Added Snapchat",
     message: "",
-    photo: "",
+    photo: "photos/photo.firstsnaps1.jpg","photos/photo.firstsnaps2.jpg"
     photoAlt: "",
     photoCaption: ""
   },
