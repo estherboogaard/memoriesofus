@@ -1,4 +1,4 @@
-# Our Memories — GitHub-ready version
+# Memories of us— GitHub-ready version
 
 This is the website for the one-QR-code memory calendar.
 
