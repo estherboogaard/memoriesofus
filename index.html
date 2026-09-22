@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Memories</title>
+  <meta name="description" content="A little piece of us, one memory at a time.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8f4ef;
+      --card: rgba(255,255,255,.82);
+      --text: #302a27;
+      --muted: #857a74;
+      --accent: #a65d67;
+      --line: #e8ddd6;
+      --shadow: 0 12px 35px rgba(65,45,35,.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #fffaf6 0, var(--bg) 45%, #f2ebe4 100%);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      min-height: 100vh;
+    }
+    .wrap { width: min(900px, calc(100% - 32px)); margin: 0 auto; padding: 55px 0 70px; }
+    header { text-align: center; margin-bottom: 38px; }
+    h1 { font: 400 clamp(42px, 8vw, 72px)/1.05 "DM Serif Display", serif; margin: 0 0 12px; }
+    .intro { color: var(--muted); font-size: 15px; margin: 0; }
+    .timeline { position: relative; }
+    .timeline:before {
+      content: ""; position: absolute; left: 18px; top: 0; bottom: 0;
+      width: 1px; background: var(--line);
+    }
+    .memory {
+      position: relative; margin: 0 0 22px 46px; padding: 24px;
+      background: var(--card); border: 1px solid rgba(232,221,214,.9);
+      border-radius: 20px; box-shadow: var(--shadow); backdrop-filter: blur(8px);
+    }
+    .dot {
+      position: absolute; left: -37px; top: 28px; width: 13px; height: 13px;
+      border-radius: 50%; background: #c9b9b0; border: 3px solid var(--bg);
+      box-shadow: 0 0 0 1px var(--line);
+    }
+    .memory.unlocked .dot { background: var(--accent); }
+    .date { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+    h2 { font: 400 28px/1.15 "DM Serif Display", serif; margin: 0 0 12px; }
+    .message { font-size: 15px; line-height: 1.75; white-space: pre-line; margin: 0; }
+    .locked .message { color: var(--muted); font-style: italic; }
+    .countdown { color: var(--muted); font-size: 13px; margin-top: 12px; }
+    .photo {
+      display: block; width: 100%; max-height: 460px; object-fit: cover;
+      border-radius: 14px; margin-top: 18px; border: 1px solid var(--line);
+    }
+    .photo-caption { color: var(--muted); font-size: 12px; margin-top: 7px; }
+    .empty-photo { display: none; }
+    footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 40px; }
+    @media (max-width: 600px) {
+      .wrap { width: min(100% - 20px, 900px); padding-top: 38px; }
+      .memory { margin-left: 36px; padding: 19px; border-radius: 17px; }
+      .timeline:before { left: 12px; }
+      .dot { left: -31px; }
+      h2 { font-size: 25px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>Our Memories</h1>
+      <p class="intro">A little piece of us, one memory at a time.</p>
+    </header>
+
+    <section id="timeline" class="timeline" aria-live="polite"></section>
+
+    <footer>Made with love ♡</footer>
+  </main>
+
+  <script src="memories.js"></script>
+  <script>
+    const timeline = document.getElementById("timeline");
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    function parseDate(value) {
+      const [y,m,d] = value.split("-").map(Number);
+      return new Date(y, m - 1, d);
+    }
+
+    function formatDate(value) {
+      return parseDate(value).toLocaleDateString("en-GB", {
+        day: "numeric", month: "long", year: "numeric"
+      });
+    }
+
+    function daysBetween(a,b) {
+      return Math.ceil((b-a) / 86400000);
+    }
+
+    memories
+      .slice()
+      .sort((a,b) => a.unlockDate.localeCompare(b.unlockDate))
+      .forEach(memory => {
+        const unlock = parseDate(memory.unlockDate);
+        const unlocked = today >= unlock;
+
+        const card = document.createElement("article");
+        card.className = "memory " + (unlocked ? "unlocked" : "locked");
+
+        const dot = document.createElement("span");
+        dot.className = "dot";
+        card.appendChild(dot);
+
+        const date = document.createElement("div");
+        date.className = "date";
+        date.textContent = unlocked ? formatDate(memory.unlockDate) : "A future memory";
+        card.appendChild(date);
+
+        const title = document.createElement("h2");
+        title.textContent = unlocked ? memory.title : "A memory is waiting for you";
+        card.appendChild(title);
+
+        const message = document.createElement("p");
+        message.className = "message";
+
+        if (unlocked) {
+          message.textContent = memory.message || "A little memory is waiting here. ♡";
+          card.appendChild(message);
+
+          if (memory.photo) {
+            const img = document.createElement("img");
+            img.className = "photo";
+            img.src = memory.photo;
+            img.alt = memory.photoAlt || memory.title;
+            img.loading = "lazy";
+            img.onerror = () => img.remove();
+            card.appendChild(img);
+          }
+
+          if (memory.photoCaption) {
+            const caption = document.createElement("div");
+            caption.className = "photo-caption";
+            caption.textContent = memory.photoCaption;
+            card.appendChild(caption);
+          }
+        } else {
+          message.textContent = "This one isn't ready yet…";
+          card.appendChild(message);
+
+          const countdown = document.createElement("div");
+          countdown.className = "countdown";
+          const days = daysBetween(today, unlock);
+          countdown.textContent = days === 1 ? "Unlocks tomorrow" : `Unlocks in ${days} days`;
+          card.appendChild(countdown);
+        }
+
+        timeline.appendChild(card);
+      });
+  </script>
+</body>
+</html>
