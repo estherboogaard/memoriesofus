@@ -30,7 +30,7 @@ const memories = [
   {
     unlockDate: "2026-09-22",
     title: "Our first text",
-    message: "",
+    message: "Ik had op zich kunnen weten dat uren wachten tot het een normaal tijdstip was om je te appen een teken was dat ik je misschien toch wel best wel leuk vond. Vanaf het moment na die wedstrijd dat je door je enkel was gegaan maakte ik me zorgen om je en wilde ik je helpen. Ik wilde je eigenlijk die avond al appen❤️",
     photo: "photos/photo.firsttext.jpg",
     photoAlt: "",
     photoCaption: ""
