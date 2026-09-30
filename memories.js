@@ -40,8 +40,8 @@ const memories = [
     title: "Added Snapchat",
     message: "",
     photos: [
-      "photos/photo.firstsnap1.jpg",
-      "photos/photo.firstsnap2.jpg"
+      "photos/photo.firstsnaps1.jpg",
+      "photos/photo.firstsnaps2.jpg"
     ],
     photoAlt: "",
     photoCaption: ""
