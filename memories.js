@@ -38,7 +38,7 @@ const memories = [
   {
     unlockDate: "2026-09-23",
     title: "Added Snapchat",
-    message: "",
+    message: "Yes, I was trying to cheer you up. But spending this time being an idiot with you was so much fun and made me so happy. The idea that it was in any way helpful to you made me even happier. The start of me laughing more and being happier than I had ever been in my life❤️",
     photo: [
       "photos/photo.firstsnaps1.jpg",
       "photos/photo.firstsnaps2.jpg"
