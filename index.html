@@ -130,15 +130,15 @@
           message.textContent = memory.message || "A little memory is waiting here. ♡";
           card.appendChild(message);
 
-          if (memory.photo) {
+        [].concat(memory.photos || memory.photo || []).forEach(src => {
             const img = document.createElement("img");
             img.className = "photo";
-            img.src = memory.photo;
+            img.src = src;
             img.alt = memory.photoAlt || memory.title;
             img.loading = "lazy";
             img.onerror = () => img.remove();
             card.appendChild(img);
-          }
+          });
 
           if (memory.photoCaption) {
             const caption = document.createElement("div");
