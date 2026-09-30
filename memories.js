@@ -39,7 +39,7 @@ const memories = [
     unlockDate: "2026-09-23",
     title: "Added Snapchat",
     message: "",
-    photos: [
+    photo: [
       "photos/photo.firstsnaps1.jpg",
       "photos/photo.firstsnaps2.jpg"
     ],
