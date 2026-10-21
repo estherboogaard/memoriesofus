@@ -82,7 +82,7 @@ const memories = [
     unlockDate: "2026-11-01",
     title: "The first time you watched a livestream",
     message: "I realized something was up when Jeslyn said to me 'sinds wanneer kijkt Febe basketbal livestreams'. I felt so special",
-    photo: "",
+    photo: "photos/video.ede.mp4",
     photoAlt: "",
     photoCaption: ""
   },
