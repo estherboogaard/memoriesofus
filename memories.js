@@ -66,7 +66,7 @@ const memories = [
     unlockDate: "2026-10-26",
     title: "Our first movie night",
     message: "Cuudddllessss",
-    photo: "",
+    photo: "photos/video.movienight.mp4",
     photoAlt: "",
     photoCaption: ""
   },
@@ -90,7 +90,7 @@ const memories = [
     unlockDate: "2026-11-03",
     title: "Your first time in Ede",
     message: "Nee, geen boederijen. Wel een legendary filmpje that we will never forget.",
-    photo: "",
+    photo: "photos/video.ede.mp4",
     photoAlt: "",
     photoCaption: ""
   },
@@ -98,7 +98,7 @@ const memories = [
     unlockDate: "2026-11-10",
     title: "Sneaking out of practice for McDonald's",
     message: "What can I say",
-    photo: "",
+    photo: "photos/photo.mcd.jpg",
     photoAlt: "",
     photoCaption: ""
   },
@@ -106,7 +106,7 @@ const memories = [
     unlockDate: "2026-11-16",
     title: "“Accidentally” switching rings",
     message: "Hated that...",
-    photo: "",
+    photo: "photos/photo.ringen.jpg",
     photoAlt: "",
     photoCaption: ""
   },
