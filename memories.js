@@ -58,7 +58,7 @@ const memories = [
     unlockDate: "2026-10-18",
     title: "The first time I wore your clothes",
     message: "I mean I definetely liked the shirt.. a lil extra",
-    photo: "",
+    photo: "photos/photo.shirt.jpg",
     photoAlt: "",
     photoCaption: ""
   },
